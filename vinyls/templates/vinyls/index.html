@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="get">
+{{ vinylFilter.form }}
+<button class="btn btn-primary" type="submit">
+  Search</button>
+</form>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Cover</th>
+      <th>Genre</th>
+      <th>Title</th>
+      <th>Artist</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+<tbody>
+    {% for vinyl in vinyls %}
+    <tr onclick="window.location='{% url 'vinyls:detail' vinyl.vinyl_id %}';">
+      <td><img src={{ vinyl.picture_url }} alt="Image Loading..." style="width:94px;height:94px;"></td>
+      <td>{{ vinyl.genre }}</td>
+      <td>{{ vinyl.title }}</td>
+      <td>{{ vinyl.artists }}</td>
+      <td>{{ vinyl.release_year }}</td>
+    <tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
+
+jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+});

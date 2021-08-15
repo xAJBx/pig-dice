@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="get">
+{{ gameFilter.form }}
+<button class="btn btn-primary" type="submit">
+  Search</button>
+</form>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Box Art</th>
+      <th>Category</th>
+      <th>Name</th>
+      <th>Publiser</th>
+      <th>Year</th>
+      <th>Age Range</th>
+      <th>Number Players</th>
+      <th>Play Time</th>
+    </tr>
+  </thead>
+<tbody>
+    {% for game in games %}
+    <tr onclick="window.location='{% url "games:detail" game.game_id %}';">
+      <td><img src={{ game.picture_url }} alt="Image Loading..." style="width:74px;height:94px;"></td>
+      <td>{{ game.category }}</td>
+      <td>{{ game.name }}</td>
+      <td>{{ game.publisher }}</td>
+      <td>{{ game.release_year }}</td>
+      <td>{{ game.age_range }} </td>
+      <td>{{ game.number_players }}</td>
+      <td>{{ game.time_of_play }}</td>
+    <tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

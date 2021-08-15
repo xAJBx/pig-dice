@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form method="get">
+{{ bookFilter.form }}
+<button class="btn btn-primary" type="submit">
+  Search</button>
+</form>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Cover</th>
+      <th>Category</th>
+      <th>Title</th>
+      <th>Author(s)</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+<tbody>
+    {% for book in books %}
+    <tr onclick="window.location='{% url 'books:detail' book.book_id %}';">
+      <td><img src={{ book.picture_url }} alt="Image Loading..." style="width:74px;height:94px;"></td>
+      <td>{{ book.category }}</td>
+      <td>{{ book.title }}</td>
+      <td>{{ book.authors }}</td>
+      <td>{{ book.publication_date }}</td>
+    <tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
+
+

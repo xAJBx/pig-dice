@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<span><h1 > {{game.name}} </h1>
+</head>
+<div id="header" style="height:15%;width:100%;">
+  <div style='float:left'>
+    <img src={{ game.picture_url }} alt="Image Loading..." style="width:200px;height:235px;"/>
+  </div>
+  <div style='float:leftt'>
+    <table width="400" style="margin-left:10%;float:top;"> 
+      <tr>
+	<td>Publisher: <a>{{ game.publisher }}</a></td>
+      </tr>
+      <tr>
+	<td>Year: <a>{{ game.release_year }}</a></td>
+      </tr>
+      <tr>
+	<td>Edition: <a>{{ game.edition }}</a></td>
+      </tr>
+      <tr>
+	<td>Aquired: <a>{{ date.date_created }}</a></td>
+      </tr>
+    </table>
+    <a>{{ atlas_res_desc |safe }}</a>
+  </div>
+</div>
+
+
+{% endblock %}
